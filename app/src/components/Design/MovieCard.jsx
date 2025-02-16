@@ -1,10 +1,33 @@
-import React from 'react'
-import Like from '../Like'
+'use client'
+
+import { Link } from 'react-router-dom'
+// import Like from '../Like'
+import { route } from '../../core/routing'
+import { useCallback } from 'react';
+import useFetch from '../../core/hooks/useFetch';
+import { searchMovies } from '../../core/modules/Movies/api';
 
 const MovieCard = () => {
+
+    const [query, setQuery] = useState('');
+    const apiCall = useCallback((query) => {
+        return searchMovies(query);
+      }, [0, 10]);
+    
+      const {
+        data,
+        error,
+        setError,
+        isLoading,
+        refresh,
+      } = useFetch(apiCall);
+
+    console.log(data);
+
   return (
     <div className='movieCard mt-4 mb-4'>
-        <Like 
+        <p>{data.description[0].title}</p>
+        {/* <Like 
             onUpdate={onUpdate} 
             movieId={movie._id}
             movie={movie}
@@ -15,9 +38,8 @@ const MovieCard = () => {
         <Link to={route(Routes.MoviesDetail, {id: movie._id})}>
             <section>
                 <p className='coverTitle mt-2 mb-0'>{movie.title}</p>
-                <p className="coverYear mb-0">{format(new Date(movie.releaseDate), 'yyyy')}</p>
             </section>
-        </Link>
+        </Link> */}
     </div>
   )
 }

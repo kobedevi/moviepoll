@@ -5,11 +5,11 @@ import useFetch from '../core/hooks/useFetch';
 import { createContext, useContext } from 'react';
 import Spinner from './Design/Spinner';
 import Alert from './Design/Alert';
+import MainRouting from '../core/routing/MainRouting';
 
 const LikedMovies = createContext();
 
 const App = () => {
-
     const {
         data: likedMovies,
         setData: setLikedMovies,
@@ -27,7 +27,6 @@ const App = () => {
 
     return (
         <div className="content">
-            <p>Homepage logged in</p>
             <div className="app">
                 <main>
                     {/* add likedMovies to provider so we can prevent constant connections to check if movie is liked or not*/}

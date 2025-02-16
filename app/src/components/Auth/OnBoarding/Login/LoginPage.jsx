@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from 'react';
 import Button from '../../../Design/Button';
 import Container from '../../../Design/Container';
@@ -11,12 +9,21 @@ import AppError from '../../../../core/error/AppError';
 import { login } from '../../../../core/modules/auth/api';
 import { handleApiResult }  from '../../../../core/utils/api';
 import ErrorAlert from '../../../Shared/ErrorAlert';
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
+
 
 let schema = yup.object().shape({
-  username: yup.string().required(),
+    username: yup.string().required(),
 });
 
 const LoginPage = ({ setUser }) => {
+
+    const navigate = useNavigate();
+
+    LoginPage.propTypes = {
+        setUser: PropTypes.func.isRequired,
+    };
 
     const [data, setData] = useState({
         username: '',
@@ -40,6 +47,7 @@ const LoginPage = ({ setUser }) => {
             .then((res) => handleApiResult(res))
             .then((data) => {
                 setUser(data);
+                navigate("/movies")
             })
             .catch((e) => {
                 if (e instanceof ApiError) {

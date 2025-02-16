@@ -11,7 +11,6 @@ const { registerMiddleware } = require('./middleware');
 const db = new MongoClient();
 db.connect();
 
-
 const hostname = 'localhost';
 const app = express();
 const port = process.env.PORT || 80;

@@ -1,8 +1,9 @@
-import React from 'react'
+import MovieCard from "./Design/MovieCard"
 
 const MovieSlider = () => {
   return (
-    <div>MovieSlider</div>
+    
+    <MovieCard/>
   )
 }
 

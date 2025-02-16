@@ -11,7 +11,7 @@ const registerRoutes = (app) => {
     app.post('/register', userController.register);
     app.post('/login', authLocal, userController.login);
 
-    app.use(authJwt, authRoutes)
+    app.use(authJwt, authRoutes);
 
     // default 404
     app.use(function (req, res, next) {

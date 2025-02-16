@@ -1,11 +1,9 @@
 const Routes = Object.freeze({
     // old
+    Home: "/",
     Login: '/login',
 
     LikedMovies: '/likedMovies',
-    
-    Users: '/users',
-    UsersEdit: '/users/edit',
 
     Movies: '/movies',
     MoviesCreate: '/movies/create',

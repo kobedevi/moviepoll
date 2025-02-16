@@ -13,7 +13,7 @@ const AuthContainer = () => {
     const updateUser = (updatedUser) => {
         storage.storeUser(updatedUser);
         if(updatedUser) {
-            storage.storeUserVariableData({'email': updatedUser.email, 'userName': updatedUser.userName});
+            storage.storeUserVariableData({'username': updatedUser.username});
         } else {
             storage.storeUserVariableData(null);
         }
@@ -24,23 +24,21 @@ const AuthContainer = () => {
         updateUser(null);
     }
 
-    const RouterComponent = typeof window !== 'undefined' ? Router : StaticRouter;
-
     if(user) {
         return (
             <AuthContext.Provider value={{user, setUser: updateUser, logout}}>
-                <App/>
+                <App setUser={updateUser}/>
             </AuthContext.Provider>
         )
     }
 
     return (
-        <RouterComponent>
+        <Router>
             <PossibleRoutes>
                 <Route index path={Routes.Login} element={<LoginPage setUser={updateUser} />} />
                 <Route path="*" element={<Navigate to={Routes.Login} replace />} />
             </PossibleRoutes>
-        </RouterComponent>
+        </Router>
 )
 }
 
